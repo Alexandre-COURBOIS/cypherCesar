@@ -1,17 +1,23 @@
 package com.alexandre;
 
 import com.alexandre.algorythm.CaesarCipher;
+import com.alexandre.algorythm.ShiftCalculator;
+import com.alexandre.service.CharService;
 
 public class Main {
     public static void main(String[] args) {
+        CaesarCipher caesarCipher = new CaesarCipher();
+        CharService charService = new CharService();
+        ShiftCalculator shiftCalculator = new ShiftCalculator();
 
         String dataToUncrypt = "vcfgrwqwfsbhfsntowbsobgfsbhfsnqvsnjcigsghqsoixcifrviwtshseicwbsgojsnjcigdogeisjcigoihfsgofhwgobgjcigbsrsjsnqwfqizsfrobgzsgfisgzsgxcifgcijfopzsgeiojsqzsggwubsgrsjchfsdfctsggwcbdofzseiszsghhcbashwsf";
-        CaesarCipher caesarCipher = new CaesarCipher();
 
-        for (int i = 0; i < 26; i++) {
-            System.out.println("test avec : " + i);
-            System.out.println(caesarCipher.decrypt(dataToUncrypt, i));
-            System.out.println('\n');
-        }
+        char data = charService.findMostFrequentChar(dataToUncrypt);
+
+        int shifter = shiftCalculator.calculateShift(data);
+
+        String outPut = caesarCipher.decrypt(dataToUncrypt, shifter);
+
+        System.out.println(outPut);
     }
 }
